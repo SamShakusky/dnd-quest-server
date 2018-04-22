@@ -6,7 +6,7 @@ const cors        = require('cors');
 const app         = express();
 const port        = 8000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cors());
 
 MongoClient.connect(db.url, (err, client) => {

@@ -9,13 +9,17 @@ module.exports = function(app, db) {
       goal: req.body.goal
     };
     
-    db.collection('quests').insert(quest, (err, result) => {
-      if (err) { 
-        res.send({ 'Quest creation error': err }); 
-      } else {
-        res.send(result.ops[0]);
-      }
-    });
+    if(quest.title) {
+      db.collection('quests').insert(quest, (err, result) => {
+        if (err) { 
+          res.send({ 'Quest creation error': err }); 
+        } else {
+          res.send(result.ops[0]);
+        }
+      });
+    } else {
+      res.send({error: 'The title is required!'});
+    }
   });
   
   app.get('/quests/:id', (req, res) => {
@@ -66,7 +70,7 @@ module.exports = function(app, db) {
       if (err) {
         res.send({'Quest removal error': err});
       } else {
-        res.send('Quest ' + id + ' deleted!');
+        res.send({response : 'Quest ' + id + ' deleted!'});
       } 
     });
   });
