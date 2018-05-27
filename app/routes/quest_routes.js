@@ -6,7 +6,8 @@ module.exports = function(app, db) {
     const quest = {
       title: req.body.title,
       description: req.body.description,
-      goal: req.body.goal
+      goal: req.body.goal,
+      reward: req.body.reward
     };
     
     if(quest.title) {
@@ -51,7 +52,8 @@ module.exports = function(app, db) {
     const quest = {
       title: req.body.title,
       description: req.body.description,
-      goal: req.body.goal
+      goal: req.body.goal,
+      reward: req.body.reward
     };
     
     db.collection('quests').update(details, quest, (err, result) => {
