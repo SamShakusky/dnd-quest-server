@@ -5,6 +5,7 @@ const db          = require('./config/db');
 const cors        = require('cors');
 const app         = express();
 const port        = 8000;
+const passportSetup = require('./config/passport-setup');
 
 app.use(bodyParser.json());
 app.use(cors());

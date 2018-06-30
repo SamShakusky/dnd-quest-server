@@ -1,4 +1,5 @@
 config/db.js
+config/keys.js
 
 # Logs
 logs
