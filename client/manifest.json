@@ -1,0 +1,16 @@
+{
+  "short_name": "Quest",
+  "name": "D&D Quest Manager",
+  "icons": [
+    {
+      "src": "/images/icon.png",
+      "type": "image/png",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/quest-manager",
+  "background_color": "#3367D6",
+  "display": "fullscreen",
+  "scope": "/",
+  "theme_color": "#3367D6"
+}

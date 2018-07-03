@@ -7,8 +7,14 @@ const app         = express();
 const port        = 8000;
 const passportSetup = require('./config/passport-setup');
 
+const corsOption = {
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  exposedHeaders: ['x-auth-token']
+};
+app.use(cors(corsOption));
 app.use(bodyParser.json());
-app.use(cors());
 
 MongoClient.connect(db.url, (err, client) => {
   if (err) return console.log(err);
