@@ -1,0 +1,27 @@
+"facebook-login": {
+    "provider": "facebook",
+    "module": "passport-facebook",
+    "clientID": "188502511819032",
+    "clientSecret": "0687229d4aedbf7357d3aba28c893309",
+    "callbackURL": "/auth/facebook/callback",
+    "authPath": "/auth/facebook",
+    "callbackPath": "/auth/facebook/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": ["email"],
+    "failureFlash": true
+  },
+  "facebook-link": {
+    "provider": "facebook",
+    "module": "passport-facebook",
+    "clientID": "188502511819032",
+    "clientSecret": "0687229d4aedbf7357d3aba28c893309",
+    "callbackURL": "/link/facebook/callback",
+    "authPath": "/link/facebook",
+    "callbackPath": "/link/facebook/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": ["email", "user_likes"],
+    "link": true,
+    "failureFlash": true
+  }

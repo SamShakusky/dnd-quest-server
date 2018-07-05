@@ -35,10 +35,6 @@
     "dataSource": "db",
     "public": false
   },
-  "dnd-quest": {
-    "dataSource": "db",
-    "public": true
-  },
   "quests": {
     "dataSource": "db",
     "public": true
