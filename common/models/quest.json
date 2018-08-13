@@ -1,5 +1,5 @@
 {
-  "name": "quests",
+  "name": "Quest",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -21,7 +21,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "campaign": {
+      "type": "belongsTo",
+      "model": "Campaign",
+      "foreignKey": ""
+    }
+  },
   "acls": [
     {
       "accessType": "*",

@@ -35,7 +35,11 @@
     "dataSource": "db",
     "public": false
   },
-  "quests": {
+  "Quest": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Campaign": {
     "dataSource": "db",
     "public": true
   }
