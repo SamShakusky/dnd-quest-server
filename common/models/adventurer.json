@@ -1,0 +1,19 @@
+{
+  "name": "Adventurer",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "campaigns": {
+      "type": "hasMany",
+      "model": "Campaign",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

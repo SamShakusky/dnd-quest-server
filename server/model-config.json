@@ -42,5 +42,9 @@
   "Campaign": {
     "dataSource": "db",
     "public": true
+  },
+  "Adventurer": {
+    "dataSource": "db",
+    "public": true
   }
 }
