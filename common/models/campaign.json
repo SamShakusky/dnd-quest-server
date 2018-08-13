@@ -1,0 +1,27 @@
+{
+  "name": "Campaign",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "quests": {
+      "type": "hasMany",
+      "model": "Quest",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
