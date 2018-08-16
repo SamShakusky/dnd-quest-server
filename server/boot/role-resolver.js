@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(app) {
   var Role = app.models.Role;
 
@@ -26,13 +28,23 @@ module.exports = function(app) {
       // A: If Project includes userId, then give access
       var jsCampaign = JSON.parse(JSON.stringify(campaign));
       var jsId = JSON.parse(JSON.stringify(userId));
-      console.log('-----------',jsCampaign,jsId);
-      console.log('-----------',jsCampaign.members.includes(jsId));
+
       if (jsCampaign.members.includes(jsId)) {
         return cb(null, true);
       } else {
         return cb(null, false);
       }
     });
+  });
+
+  Role.registerResolver('self', function(role, context, cb) {
+    var user = context.accessToken.userId;
+    var reqUser = context.remotingContext.args.adventurerId;
+
+    if (user == reqUser) {
+      return cb(null, true);
+    } else {
+      return cb(null, false);
+    }
   });
 };
