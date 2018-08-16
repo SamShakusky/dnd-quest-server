@@ -38,23 +38,30 @@
       "permission": "DENY"
     },
     {
-      "accessType": "EXECUTE",
+      "accessType": "*",
       "principalType": "ROLE",
       "principalId": "admin",
-      "permission": "ALLOW",
-      "property": "find"
+      "permission": "ALLOW"
     },
     {
       "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "teamMember",
-      "permission": "ALLOW"
+      "permission": "ALLOW",
+      "property": "findById"
     },
     {
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$owner",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "self",
+      "permission": "ALLOW",
+      "property": "membership"
     }
   ],
   "methods": {}
