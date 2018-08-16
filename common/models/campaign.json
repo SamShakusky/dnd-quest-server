@@ -10,20 +10,23 @@
       "type": "string",
       "required": true
     },
-    "description": {
+    "memberId": {
       "type": "string"
+    },
+    "members": {
+      "type": "array"
     }
   },
   "validations": [],
   "relations": {
-    "quests": {
-      "type": "hasMany",
-      "model": "Quest",
-      "foreignKey": ""
-    },
     "adventurer": {
       "type": "belongsTo",
       "model": "Adventurer",
+      "foreignKey": "ownerId"
+    },
+    "quests": {
+      "type": "hasMany",
+      "model": "Quest",
       "foreignKey": ""
     }
   },
@@ -37,9 +40,15 @@
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
+      "principalId": "admin",
       "permission": "ALLOW",
-      "property": "create"
+      "property": "find"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "teamMember",
+      "permission": "ALLOW"
     },
     {
       "accessType": "*",
