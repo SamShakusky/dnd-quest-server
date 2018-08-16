@@ -3,15 +3,17 @@
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
-    "validateUpsert": true
+    "validateUpsert": true,
+    "strictObjectIDCoercion": true,
+    "mongodb": {
+      "collection": "Campaign",
+      "allowExtendedOperators": true
+    }
   },
   "properties": {
     "title": {
       "type": "string",
       "required": true
-    },
-    "memberId": {
-      "type": "string"
     },
     "members": {
       "type": "array"
@@ -62,6 +64,13 @@
       "principalId": "self",
       "permission": "ALLOW",
       "property": "membership"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
     }
   ],
   "methods": {}
