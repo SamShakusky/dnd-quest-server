@@ -16,7 +16,7 @@ module.exports = function(Campaign) {
     {
       http: {path: '/membership', verb: 'get'},
       accepts: {arg: 'adventurerId', type: 'string', http: {source: 'query'}},
-      returns: {arg: 'campaigns', type: 'object'},
+      returns: {arg: 'items', type: 'object'},
     }
   );
 
