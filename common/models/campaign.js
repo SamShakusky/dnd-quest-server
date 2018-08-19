@@ -14,7 +14,7 @@ module.exports = function(Campaign) {
             where: {id: {inq: membersId}},
             fields: {id: true, username: true},
           }).then(function(adventurers) {
-            campaign.members = adventurers;
+            campaign.membersFull = adventurers;
             return campaign;
           });
         });

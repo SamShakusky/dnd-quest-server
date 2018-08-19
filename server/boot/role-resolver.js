@@ -32,7 +32,7 @@ module.exports = function(app) {
       if (jsCampaign.members.includes(jsId)) {
         return cb(null, true);
       } else {
-        return cb(null, false);
+        return cb(new Error('Authorization Required'));
       }
     });
   });
@@ -44,7 +44,7 @@ module.exports = function(app) {
     if (user == reqUser) {
       return cb(null, true);
     } else {
-      return cb(null, false);
+      return cb(new Error('Authorization Required'));
     }
   });
 };

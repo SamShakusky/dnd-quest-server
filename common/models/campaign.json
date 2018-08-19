@@ -54,6 +54,13 @@
       "property": "findById"
     },
     {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "teamMember",
+      "permission": "ALLOW",
+      "property": "__updateById__quests"
+    },
+    {
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$owner",
@@ -69,9 +76,16 @@
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
+      "principalId": "teamMember",
       "permission": "ALLOW",
       "property": "__get__quests"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "teamMember",
+      "permission": "ALLOW",
+      "property": "__create__quests"
     },
     {
       "accessType": "EXECUTE",
