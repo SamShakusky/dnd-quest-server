@@ -11,13 +11,16 @@
       "required": true
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "default" : ""
     },
     "goal": {
-      "type": "string"
+      "type": "string",
+      "default" : ""
     },
     "reward": {
-      "type": "object"
+      "type": "object",
+      "default" : {}
     }
   },
   "validations": [],

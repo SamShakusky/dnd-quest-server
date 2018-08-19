@@ -1,12 +1,27 @@
 'use strict';
 
 module.exports = function(Campaign) {
+  var app = require('../../server/server');
+
   Campaign.membership = function(adventurerId, cb) {
-    console.log(adventurerId);
     Campaign.find({where: {members: {inq: adventurerId}}},
-      function(err, instance) {
-        var response = instance;
-        cb(null, response);
+      function(err, campaigns) {
+        if (err) return cb(null, err);
+
+        var results = campaigns.map(campaign => {
+          var membersId = campaign.members;
+          return app.models.Adventurer.find({
+            where: {id: {inq: membersId}},
+            fields: {id: true, username: true},
+          }).then(function(adventurers) {
+            campaign.members = adventurers;
+            return campaign;
+          });
+        });
+
+        Promise.all(results).then((completed) => {
+          return cb(null, completed);
+        });
       }
     );
   };
@@ -22,6 +37,8 @@ module.exports = function(Campaign) {
 
   Campaign.addMember = function(campaignId, adventurerId, cb) {
     Campaign.findById(campaignId, function(err, instance) {
+      if (err) return cb(null, err);
+
       instance.updateAttributes({$push: {members: adventurerId}});
       cb(null, instance);
     });

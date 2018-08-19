@@ -16,7 +16,8 @@
       "required": true
     },
     "members": {
-      "type": "array"
+      "type": "array",
+      "default" : []
     }
   },
   "validations": [],
@@ -64,6 +65,13 @@
       "principalId": "self",
       "permission": "ALLOW",
       "property": "membership"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "__get__quests"
     },
     {
       "accessType": "EXECUTE",
