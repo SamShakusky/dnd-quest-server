@@ -21,6 +21,10 @@
     "reward": {
       "type": "object",
       "default" : {}
+    },
+    "done": {
+      "type": "boolean",
+      "default" : false
     }
   },
   "validations": [],
