@@ -2,7 +2,8 @@
 
 module.exports = function(Campaign) {
   var app = require('../../server/server');
-
+  var es = require('event-stream');
+  
   Campaign.membership = function(adventurerId, cb) {
     Campaign.find({where: {members: {inq: adventurerId}}},
       function(err, campaigns) {
@@ -56,4 +57,23 @@ module.exports = function(Campaign) {
       returns: {arg: 'campaigns', type: 'object'},
     }
   );
+  
+  // Campaign.changes = function(campaignId, cb) {
+  //   Campaign.createChangeStream(function(err, changes) {
+  //     changes.pipe(es.stringify()).pipe(process.stdout);
+  //     cb(null, changes);
+  //   });
+  // };
+
+  // Campaign.remoteMethod(
+  //   'changes',
+  //   {
+  //     http: {path: '/:id/changes', verb: 'get'},
+  //     accepts: [
+  //       {arg: 'id', type: 'string', description: 'campaignId'},
+  //     ],
+  //     description: 'Gets Campaign\'s changes',
+  //     // returns: {arg: 'campaigns', type: 'object'},
+  //   }
+  // );
 };
