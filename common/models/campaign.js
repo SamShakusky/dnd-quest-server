@@ -57,23 +57,28 @@ module.exports = function(Campaign) {
       returns: {arg: 'campaigns', type: 'object'},
     }
   );
-  
-  // Campaign.changes = function(campaignId, cb) {
-  //   Campaign.createChangeStream(function(err, changes) {
-  //     changes.pipe(es.stringify()).pipe(process.stdout);
-  //     cb(null, changes);
-  //   });
-  // };
 
-  // Campaign.remoteMethod(
-  //   'changes',
-  //   {
-  //     http: {path: '/:id/changes', verb: 'get'},
-  //     accepts: [
-  //       {arg: 'id', type: 'string', description: 'campaignId'},
-  //     ],
-  //     description: 'Gets Campaign\'s changes',
-  //     // returns: {arg: 'campaigns', type: 'object'},
-  //   }
-  // );
+  Campaign.changes = function(campaignId, cb) {
+    app.models.Quest.createChangeStream(function(err, changes) {
+      if (err) return cb(null, err);
+      
+      cb(null, changes);
+    });
+  };
+
+  Campaign.remoteMethod(
+    'changes',
+    {
+      http: {path: '/:id/changes', verb: 'get'},
+      accepts: [
+        {arg: 'id', type: 'string', description: 'campaignId'},
+      ],
+      description: 'Gets Campaign\'s changes',
+      returns: {
+        arg: 'changes',
+        type: 'ReadableStream',
+        json: true,
+      },
+    }
+  );
 };
