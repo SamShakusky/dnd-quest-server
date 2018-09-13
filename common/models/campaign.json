@@ -85,13 +85,6 @@
       "principalType": "ROLE",
       "principalId": "teamMember",
       "permission": "ALLOW",
-      "property": "__get__quests"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "teamMember",
-      "permission": "ALLOW",
       "property": "__create__quests"
     },
     {

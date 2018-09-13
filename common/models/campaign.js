@@ -3,7 +3,7 @@
 module.exports = function(Campaign) {
   var app = require('../../server/server');
   var es = require('event-stream');
-  
+
   Campaign.membership = function(adventurerId, cb) {
     Campaign.find({where: {members: {inq: adventurerId}}},
       function(err, campaigns) {
@@ -59,11 +59,13 @@ module.exports = function(Campaign) {
   );
 
   Campaign.changes = function(campaignId, cb) {
-    app.models.Quest.createChangeStream(function(err, changes) {
-      if (err) return cb(null, err);
-      
-      cb(null, changes);
-    });
+    app.models.Quest.createChangeStream(
+      {'where': {'campaignId': campaignId}},
+      function(err, changes) {
+        if (err) return cb(null, err);
+        cb(null, changes);
+      }
+    );
   };
 
   Campaign.remoteMethod(
