@@ -2,14 +2,14 @@
 
 module.exports = function(app) {
   var Role = app.models.Role;
-  
+
   Role.registerResolver('teamMember', function(role, context, cb) {
     // Q: Is the current request accessing a Campaign?
     if (context.modelName !== 'Campaign') {
       // A: No. This role is only for campaigns: callback with FALSE
       return process.nextTick(() => cb(null, false));
     }
-    
+
     // Q: Is the user logged in? (there will be an accessToken with an ID if so)
     var userId = context.accessToken.userId;
     if (!userId) {
