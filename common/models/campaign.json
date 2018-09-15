@@ -47,20 +47,6 @@
       "permission": "ALLOW"
     },
     {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "teamMember",
-      "permission": "ALLOW",
-      "property": "findById"
-    },
-    {
-      "accessType": "WRITE",
-      "principalType": "ROLE",
-      "principalId": "teamMember",
-      "permission": "ALLOW",
-      "property": "__updateById__quests"
-    },
-    {
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$owner",
@@ -76,9 +62,23 @@
     {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
       "principalId": "teamMember",
       "permission": "ALLOW",
       "property": "changes"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "teamMember",
+      "permission": "ALLOW",
+      "property": "findById"
     },
     {
       "accessType": "EXECUTE",
@@ -95,11 +95,18 @@
       "property": "__get__quests"
     },
     {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "teamMember",
+      "permission": "ALLOW",
+      "property": "__updateById__quests"
+    },
+    {
       "accessType": "EXECUTE",
       "principalType": "ROLE",
-      "principalId": "$authenticated",
+      "principalId": "teamMember",
       "permission": "ALLOW",
-      "property": "create"
+      "property": "__destroyById__quests"
     }
   ],
   "methods": {}
