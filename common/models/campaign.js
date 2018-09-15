@@ -3,6 +3,8 @@
 module.exports = function(Campaign) {
   var app = require('../../server/server');
   var es = require('event-stream');
+  var PassThrough = require('stream').PassThrough;
+  var filterNodes = require('loopback-filters');
 
   Campaign.membership = function(adventurerId, cb) {
     Campaign.find({where: {members: {inq: adventurerId}}},
@@ -59,13 +61,110 @@ module.exports = function(Campaign) {
   );
 
   Campaign.changes = function(campaignId, cb) {
-    app.models.Quest.createChangeStream(
-      {'where': {'campaignId': campaignId}},
-      function(err, changes) {
-        if (err) return cb(null, err);
-        cb(null, changes);
+    const options = {'where': {'campaignId': campaignId}};
+    if (typeof options === 'function') {
+      cb = options;
+      options = undefined;
+    }
+
+    var idName = this.getIdName();
+    var Model = app.models.Quest;
+    var changes = new PassThrough({objectMode: true});
+
+    changes._destroy = function() {
+      changes.end();
+      changes.emit('end');
+      changes.emit('close');
+    };
+
+    changes.destroy = changes.destroy || changes._destroy; // node 8 compability
+
+    changes.on('error', removeHandlers);
+    changes.on('close', removeHandlers);
+    changes.on('finish', removeHandlers);
+    changes.on('end', removeHandlers);
+
+    process.nextTick(function() {
+      cb(null, changes);
+    });
+
+    Model.observe('after save', changeHandler);
+    Model.observe('after delete', deleteHandler);
+
+    return cb.promise;
+
+    function changeHandler(ctx, next) {
+      var change = createChangeObject(ctx, 'save');
+      if (change) {
+        changes.write(change);
       }
-    );
+
+      next();
+    }
+
+    function deleteHandler(ctx, next) {
+      var change = createChangeObject(ctx, 'delete');
+      if (change) {
+        changes.write(change);
+      }
+
+      next();
+    }
+
+    function createChangeObject(ctx, type) {
+      var where = ctx.where;
+      var data = ctx.instance || ctx.data;
+      var whereId = where && where[idName];
+
+      // the data includes the id
+      // or the where includes the id
+      var target;
+
+      if (data && (data[idName] || data[idName] === 0)) {
+        target = data[idName];
+      } else if (where && (where[idName] || where[idName] === 0)) {
+        target = where[idName];
+      }
+
+      var hasTarget = target === 0 || !!target;
+
+      // apply filtering if options is set
+      if (options) {
+        var filtered = filterNodes([data], options);
+        if (filtered.length !== 1) {
+          return null;
+        }
+        data = filtered[0];
+      }
+
+      var change = {
+        target: target,
+        where: where,
+        data: data,
+        dispatcher: ctx.options.accessToken.userId,
+      };
+
+      switch (type) {
+        case 'save':
+          if (ctx.isNewInstance === undefined) {
+            change.type = hasTarget ? 'update' : 'create';
+          } else {
+            change.type = ctx.isNewInstance ? 'create' : 'update';
+          }
+
+          break;
+        case 'delete':
+          change.type = 'remove';
+          break;
+      }
+
+      return change;
+    }
+
+    function removeHandlers() {
+      Model.removeObserver('after save', changeHandler);
+      Model.removeObserver('after delete', deleteHandler);
+    }
   };
 
   Campaign.remoteMethod(
