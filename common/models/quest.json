@@ -1,7 +1,7 @@
 {
   "name": "Quest",
   "base": "PersistedModel",
-  "idInjection": true,
+  "idInjection": false,
   "options": {
     "validateUpsert": true
   },
@@ -25,6 +25,11 @@
     "done": {
       "type": "boolean",
       "default" : false
+    },
+    "id": {
+      "type": "string",
+      "required": true,
+      "id": true
     }
   },
   "validations": [],
