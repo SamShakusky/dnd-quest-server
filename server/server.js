@@ -5,6 +5,10 @@ var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
 
+var limit = require('./middleware/limit');
+
+app.middleware('routes:before', '/api/Campaigns/*/quests', limit('dev'));
+
 app.start = function() {
   // start the web server
   return app.listen(function() {

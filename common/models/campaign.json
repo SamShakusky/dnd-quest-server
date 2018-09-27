@@ -18,6 +18,10 @@
     "members": {
       "type": "array",
       "default" : []
+    },
+    "limit": {
+      "type": "number",
+      "default": 10
     }
   },
   "validations": [],
@@ -72,6 +76,13 @@
       "principalId": "teamMember",
       "permission": "ALLOW",
       "property": "changes"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "teamMember",
+      "permission": "ALLOW",
+      "property": "addQuest"
     },
     {
       "accessType": "READ",

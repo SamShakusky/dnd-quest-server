@@ -182,4 +182,33 @@ module.exports = function(Campaign) {
       },
     }
   );
+
+  // Campaign.addQuest = function(campaignId, data, cb) {
+  //   console.log('------', data);
+  //   const newData = {
+  //     title: data.title || '',
+  //     description: data.description || '',
+  //     reward: data.reward || {},
+  //     id: data.id || 'wawad',
+  //     done: false,
+  //     campaignId,
+  //   };
+  //   app.models.Quest.create(newData, function(err, instance) {
+  //     if (err) return cb(null, err);
+
+  //     cb(null, instance);
+  //   });
+  // };
+
+  // Campaign.remoteMethod(
+  //   'addQuest',
+  //   {
+  //     http: {path: '/:id/quests2'},
+  //     accepts: [
+  //       {arg: 'id', type: 'string', description: 'campaignId'},
+  //       {arg: 'data', type: 'object'},
+  //     ],
+  //     returns: {arg: 'items', type: 'object'},
+  //   }
+  // );
 };
