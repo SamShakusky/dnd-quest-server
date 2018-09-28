@@ -53,6 +53,7 @@
     }
   },
   "final": {
+    "./middleware/redirect404": {},
     "loopback#urlNotFound": {}
   },
   "final:after": {
