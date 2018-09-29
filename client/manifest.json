@@ -5,12 +5,22 @@
     {
       "src": "/images/icon.png",
       "type": "image/png",
-      "sizes": "any"
+      "sizes": "144x144"
+    },
+    {
+      "src": "/images/icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": "/quest-manager",
+  "start_url": ".",
   "background_color": "#3367D6",
-  "display": "fullscreen",
-  "scope": "/",
+  "display": "standalone",
+  "scope": ".",
   "theme_color": "#3367D6"
 }
