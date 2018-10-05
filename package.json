@@ -7,7 +7,8 @@
     "node": ">=4"
   },
   "scripts": {
-    "dev": "nodemon server/server.js",
+    "dev": "set NODE_ENV=development&& nodemon server/server.js",
+    "prod": "set NODE_ENV=production&& nodemon server/server.js",
     "lint": "eslint .",
     "posttest": "npm run lint && nsp check"
   },
