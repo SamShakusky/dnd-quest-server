@@ -1,11 +1,9 @@
 {
   "db": {
-    "host": "localhost",
+    "host": "35.202.189.41",
     "port": 27017,
-    "url": "",
-    "database": "dnd-quest-app",
-    "password": "",
-    "name": "db",
-    "connector": "memory"
+    "database": "ac-quest-manager",
+    "connector": "mongodb",
+    "useNewUrlParser":"true"
   }
 }

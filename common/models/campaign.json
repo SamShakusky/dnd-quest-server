@@ -17,11 +17,11 @@
     },
     "members": {
       "type": "array",
-      "default" : []
+      "default": []
     },
     "limit": {
       "type": "number",
-      "default": 10
+      "default": 50
     }
   },
   "validations": [],

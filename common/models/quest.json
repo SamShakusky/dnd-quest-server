@@ -12,24 +12,24 @@
     },
     "description": {
       "type": "string",
-      "default" : ""
+      "default": ""
     },
     "goal": {
       "type": "string",
-      "default" : ""
+      "default": ""
     },
     "reward": {
       "type": "object",
-      "default" : {}
+      "default": {}
     },
     "done": {
       "type": "boolean",
-      "default" : false
+      "default": false
     },
     "id": {
       "type": "string",
-      "required": true,
-      "id": true
+      "id": true,
+      "required": true
     }
   },
   "validations": [],
