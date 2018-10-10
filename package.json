@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "set NODE_ENV=development&& nodemon server/server.js",
     "prod": "set NODE_ENV=production&& nodemon server/server.js",
-    "start": "set NODE_ENV=production&& nodemon server/server.js",
+    "start": "export NODE_ENV=production&& nodemon server/server.js",
     "lint": "eslint .",
     "posttest": "npm run lint && nsp check"
   },
@@ -36,7 +36,6 @@
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.0.0",
     "loopback-component-passport": "^3.9.0",
-    "loopback-connector-firestore": "^1.0.6",
     "loopback-connector-mongodb": "^3.7.0",
     "loopback-context": "^3.3.0",
     "mongodb": "^3.0.7",

@@ -1,5 +1,6 @@
 config/db.js
 config/keys.js
+server/datasources.development.json
 
 # Logs
 logs
