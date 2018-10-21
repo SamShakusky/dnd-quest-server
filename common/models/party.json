@@ -1,0 +1,41 @@
+{
+  "name": "Party",
+  "plural": "Parties",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "strict": "filter",
+  "excludeBaseProperties": ["tester"],
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "emails": {
+      "type": [
+        "string"
+      ],
+      "required": true
+    },
+    "id": {
+      "type": "string",
+      "id": true,
+      "required": true
+    },
+    "tester": {
+      "type": "boolean",
+      "default" : false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [
+    
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "create"
+    }
+  ],
+  "methods": {}
+}

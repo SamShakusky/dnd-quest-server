@@ -3,7 +3,8 @@
     "host": "10.128.0.2",
     "port": 27017,
     "database": "ac-quest-manager",
+    "name": "db",
     "connector": "mongodb",
-    "useNewUrlParser":"true"
+    "useNewUrlParser": "true"
   }
 }
