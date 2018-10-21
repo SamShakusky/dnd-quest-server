@@ -2,6 +2,7 @@
   "name": "Quest",
   "base": "PersistedModel",
   "idInjection": false,
+  "strict": "filter",
   "options": {
     "validateUpsert": true
   },
