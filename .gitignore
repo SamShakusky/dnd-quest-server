@@ -1,5 +1,8 @@
+.DS_Store
+
 config/db.js
 config/keys.js
+config/ssl/
 server/datasources.development.json
 
 # Logs

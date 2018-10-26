@@ -5,7 +5,7 @@ var boot = require('loopback-boot');
 
 var http = require('http');
 var https = require('https');
-// var sslConfig = require('./ssl-config');
+var sslConfig = require('../config/ssl-config');
 
 var app = module.exports = loopback();
 
@@ -20,8 +20,12 @@ app.start = function(httpOnly) {
   if (httpOnly === undefined) {
     httpOnly = process.env.HTTP;
   }
+  var options = {
+    key: sslConfig.privateKey,
+    cert: sslConfig.certificate,
+  };
   var server = null;
-  server = https.createServer({}, app);
+  server = https.createServer(options, app);
 
   server.listen(app.get('port'), function() {
     var baseUrl = (httpOnly ? 'http://' : 'https://') + app.get('host') + ':' + app.get('port');

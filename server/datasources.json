@@ -1,10 +1,6 @@
 {
   "db": {
-    "host": "10.128.0.2",
-    "port": 27017,
-    "database": "ac-quest-manager",
-    "name": "db",
     "connector": "mongodb",
-    "useNewUrlParser": "true"
+    "url": "mongodb://shakusky:123qwertyx@ds151169.mlab.com:51169/dnd-quest-db"
   }
 }
