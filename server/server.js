@@ -20,10 +20,6 @@ app.start = function(httpOnly) {
   if (httpOnly === undefined) {
     httpOnly = process.env.HTTP;
   }
-  var options = {
-    key: sslConfig.privateKey,
-    cert: sslConfig.certificate,
-  };
   var server = null;
   if (!httpOnly) {
     var options = {

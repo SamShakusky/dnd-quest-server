@@ -7,7 +7,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "dev": "set NODE_ENV=development&& nodemon server/server.js",
+    "dev": "set NODE_ENV=development&& set HTTP=true&& nodemon server/server.js",
     "prod": "set NODE_ENV=production&& nodemon server/server.js",
     "start": "export NODE_ENV=production&& nodemon server/server.js",
     "lint": "eslint .",
