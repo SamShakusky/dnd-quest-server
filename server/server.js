@@ -25,7 +25,15 @@ app.start = function(httpOnly) {
     cert: sslConfig.certificate,
   };
   var server = null;
-  server = https.createServer(options, app);
+  if (!httpOnly) {
+    var options = {
+      key: sslConfig.privateKey,
+      cert: sslConfig.certificate,
+    };
+    server = https.createServer(options, app);
+  } else {
+    server = http.createServer(app);
+  }
 
   server.listen(app.get('port'), function() {
     var baseUrl = (httpOnly ? 'http://' : 'https://') + app.get('host') + ':' + app.get('port');

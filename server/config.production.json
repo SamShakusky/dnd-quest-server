@@ -1,6 +1,6 @@
 {
   "restApiRoot": "/api",
-  "host": "10.128.0.3",
+  "host": "35.239.154.201",
   "port": 443,
   "url": "https://adventurecompanion.app:443",
   "swagger": {
