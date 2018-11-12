@@ -1,6 +1,1 @@
-{
-  "db": {
-    "connector": "mongodb",
-    "url": "mongodb://shakusky:123qwertyx@ds151169.mlab.com:51169/dnd-quest-db"
-  }
-}
+{}

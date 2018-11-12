@@ -1,9 +1,0 @@
-{
-  "db": {
-    "host": "10.128.0.2",
-    "port": 27017,
-    "database": "ac-quest-manager",
-    "connector": "mongodb",
-    "useNewUrlParser":"true"
-  }
-}
