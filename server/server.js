@@ -57,3 +57,14 @@ boot(app, __dirname, function(err) {
   if (require.main === module)
     app.start();
 });
+
+function randomList(amount, max) {
+  const result = [];
+  let num = 0;
+  while (result.length < amount) {
+    const randomNum = Math.round(Math.random() * (max - 0));
+    if (result.indexOf(randomNum) === -1) result.push(randomNum);
+    num++;
+  }
+  console.log(num, result);
+};
