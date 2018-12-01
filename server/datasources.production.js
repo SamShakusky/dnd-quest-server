@@ -10,6 +10,7 @@ module.exports = {
     database: dbConf.prod.database,
     user: dbConf.prod.user,
     password: dbConf.prod.password,
+    authSource: dbConf.prod.authSource,
     connector: 'mongodb',
     useNewUrlParser: 'true',
   },
