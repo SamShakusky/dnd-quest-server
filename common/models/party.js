@@ -13,7 +13,7 @@ module.exports = function(Party) {
         html: '<h3 style="color: red;">Well done!</h3>',
       };
 
-      send(emailData);
+      // send(emailData);
     });
 
     next();

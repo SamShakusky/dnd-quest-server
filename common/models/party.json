@@ -4,7 +4,6 @@
   "base": "PersistedModel",
   "idInjection": false,
   "strict": "filter",
-  "excludeBaseProperties": ["tester"],
   "options": {
     "validateUpsert": true
   },
@@ -35,6 +34,18 @@
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "create"
+    },
+    {
+      "accessType": "READ",
+      "permission": "DENY",
+      "principalType": "ROLE",
+      "principalId": "$everyone"
+    },
+    {
+      "accessType": "READ",
+      "permission": "ALLOW",
+      "principalType": "ROLE",
+      "principalId": "admin"
     }
   ],
   "methods": {}
