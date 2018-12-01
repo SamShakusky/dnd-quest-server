@@ -1,7 +1,6 @@
 .DS_Store
 
-config/db.js
-config/keys.js
+config/keys/
 config/ssl/
 server/datasources.development.json
 

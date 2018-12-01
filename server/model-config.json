@@ -50,5 +50,9 @@
   "Party": {
     "dataSource": "db",
     "public": true
+  },
+  "Email": {
+    "dataSource": "mailgun",
+    "public": false
   }
 }

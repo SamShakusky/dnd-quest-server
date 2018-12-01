@@ -36,12 +36,13 @@
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.0.0",
     "loopback-component-passport": "^3.9.0",
+    "loopback-connector-mailgun": "0.0.12",
     "loopback-connector-mongodb": "^3.7.0",
     "loopback-context": "^3.3.0",
     "mongodb": "^3.0.7",
+    "nodemon": "^1.18.4",
     "serve-favicon": "^2.0.1",
-    "strong-error-handler": "^3.0.0",
-    "nodemon": "^1.18.4"
+    "strong-error-handler": "^3.0.0"
   },
   "devDependencies": {
     "eslint": "^3.17.1",
