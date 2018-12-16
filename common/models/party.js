@@ -47,9 +47,9 @@ module.exports = function(Party) {
     }
   );
 
-  Party.addTesters = function(cb) {
+  Party.addTesters = function(amount, cb) {
     Party.find({}, function(err, parties) {
-      const randomIndexes = randomList(5, parties.length - 1);
+      const randomIndexes = randomList(+amount, parties.length - 1);
       parties.map((party, i) => {
         if (randomIndexes.indexOf(i) !== -1) {
           party.updateAttributes({tester: true},
@@ -65,7 +65,10 @@ module.exports = function(Party) {
   Party.remoteMethod(
     'addTesters',
     {
-      http: {path: '/addTesters', verb: 'post'},
+      http: {path: '/addTesters', verb: 'put'},
+      accepts: [
+        {arg: 'amount', type: 'number'},
+      ],
       description: 'Randomly add tester status to Parties',
       returns: {arg: 'parties', type: 'array'},
     }
