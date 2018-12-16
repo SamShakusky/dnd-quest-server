@@ -24,6 +24,8 @@ module.exports = function(Campaign) {
 
         Promise.all(results).then((completed) => {
           return cb(null, completed);
+        }).catch((err) => {
+          return err;
         });
       }
     );
