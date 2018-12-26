@@ -5,7 +5,7 @@ module.exports = function(Adventurer) {
     console.log(data);
   });
   
-  Adventurer.setPassword = function(cb) {
+  Adventurer.setPass = function(cb) {
     Adventurer.find().then(adventurers => {
       const results = adventurers.map(adventurer => {
         return Adventurer.resetPassword({
@@ -26,7 +26,7 @@ module.exports = function(Adventurer) {
   };
   
   Adventurer.remoteMethod(
-    'setPassword',
+    'setPass',
     {
       http: {path: '/setPassword', verb: 'post'},
       description: 'Set new password',
