@@ -115,7 +115,6 @@ module.exports = function(Party) {
         
         // Arrays for the response
         const totalAdventurers = [];
-        const totalCampaigns = [];
         const totalErrors = [];
         
         // Iterate through tester parties
@@ -136,11 +135,12 @@ module.exports = function(Party) {
           // At the end we'll get new adventurers with a campaign
           return Adventurer.create(partyMembers)
             .then(adventurers => {
-              // Adventurers were created successfuly, pass their data to response
-              totalAdventurers.push(adventurers);
-              
-              const advIds = adventurers
-                .map(adv => adv.id.toString());
+              // Adventurers were created successfuly, collect their ids
+              const advIds = adventurers.map(adv => {
+                totalAdventurers.push(adv); // also pass their data to response
+                
+                return adv.id.toString();
+              });
               
               // Now we need a campaign for the adventurers
               // The first one would be it's owner
@@ -161,7 +161,7 @@ module.exports = function(Party) {
                 }
               });
               
-              // nor was the campaign, so null would be passed to the response instead
+              // nor was the campaign
               return null;
             });
         });
@@ -169,12 +169,11 @@ module.exports = function(Party) {
         Promise.all(results).then((campaigns) => {
           // passing campaigns' data to the response
           // including nulls, if there were some errors
-          totalCampaigns.push(campaigns);
           
           return cb(null, {
-            totalAdventurers,
-            totalCampaigns,
-            totalErrors,
+            adventurers: totalAdventurers,
+            campaigns: campaigns.filter(el => el != null),
+            errors: totalErrors,
           });
         }).catch(err => {
           return cb(err);
@@ -188,9 +187,10 @@ module.exports = function(Party) {
       http: {path: '/createAdventures', verb: 'post'},
       description: 'Create Adventurers by Party testing status',
       returns: [
-        {arg: 'totalAdventurers', type: 'array'},
-        {arg: 'totalCampaigns', type: 'array'},
-        {arg: 'totalErrors', type: 'array'},
+        {arg: 'data', type: 'object', root: true},
+        {arg: 'adventurers', type: 'array'},
+        {arg: 'campaigns', type: 'array'},
+        {arg: 'errors', type: 'array'},
       ],
     }
   );
