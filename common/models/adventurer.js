@@ -1,17 +1,29 @@
 'use strict';
 
-module.exports = function(Adventurer) {
-  Adventurer.on('resetPasswordRequest', function(data) {
-    console.log(data);
-  });
+const send = require('../lib/mailer');
+const emailAlphaStart = require('../emails/alpha-start');
+
+const sendTokens = (adventurer, tempToken) => {
+  const link = `http://localhost:3001/password?access_token=${tempToken.id}`;
   
-  Adventurer.setPass = function(cb) {
+  const data = {
+    to: adventurer.email,
+    subject: 'Welcome to the Closed Alpha!',
+    html: emailAlphaStart(adventurer.username, link),
+  };
+  console.log('email sent!');
+  // send(data);
+};
+
+module.exports = function(Adventurer) {
+  Adventurer.setTempTokens = function(cb) {
     Adventurer.find().then(adventurers => {
       const results = adventurers.map(adventurer => {
-        return Adventurer.resetPassword({
-          email: adventurer.email,
-        }).then(() => {
-          return adventurer.email;
+        const ttl = 2 * 24 * 60 * 60; // 172800 seconds == 2 days
+        
+        return adventurer.createAccessToken(ttl).then((tempToken) => {
+          sendTokens(adventurer, tempToken);
+          return `Temp token created for ${adventurer.email}.`;
         }).catch(err => {
           throw new Error(err);
         });
@@ -26,10 +38,10 @@ module.exports = function(Adventurer) {
   };
   
   Adventurer.remoteMethod(
-    'setPass',
+    'setTempTokens',
     {
-      http: {path: '/setPassword', verb: 'post'},
-      description: 'Set new password',
+      http: {path: '/setTempTokens', verb: 'post'},
+      description: 'Set temporary tokens to adventurers',
       returns: {arg: 'successful', type: 'array'},
     }
   );
