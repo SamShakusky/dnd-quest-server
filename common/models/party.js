@@ -4,6 +4,8 @@ module.exports = function(Party) {
   var app = require('../../server/server');
   var Adventurer = app.models.Adventurer;
   const send = require('../lib/mailer');
+  const emailAlphaEnter = require('../emails/alpha-enter');
+  
   const randomList = require('../lib/random-list');
   const tempPass = require('../../config/keys/tempPass');
   
@@ -15,11 +17,11 @@ module.exports = function(Party) {
     emailList.forEach(email => {
       const emailData = {
         to: email,
-        subject: 'Successful registration',
-        html: '<h3 style="color: red;">Well done!</h3>',
+        subject: 'Successful registration!',
+        html: emailAlphaEnter(),
       };
       
-      // send(emailData);
+      send(emailData);
     });
     
     next();
