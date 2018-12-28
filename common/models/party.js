@@ -7,8 +7,10 @@ module.exports = function(Party) {
   const randomList = require('../lib/random-list');
   const tempPass = require('../../config/keys/tempPass');
   
-  Party.afterRemote('create', function sendEmails(ctx, modelInstance, next) {
-    const emailList = modelInstance.emails;
+  Party.observe('after save', function sendEmails(ctx, next) {
+    if (!ctx || !ctx.isNewInstance) return next();
+    
+    const emailList = ctx.instance.emails;
     
     emailList.forEach(email => {
       const emailData = {
