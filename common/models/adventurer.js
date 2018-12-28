@@ -11,8 +11,8 @@ const sendTokens = (adventurer, tempToken) => {
     subject: 'Welcome to the Closed Alpha!',
     html: emailAlphaStart(adventurer.username, link),
   };
-  console.log('email sent!');
-  // send(data);
+  
+  send(data);
 };
 
 module.exports = function(Adventurer) {
