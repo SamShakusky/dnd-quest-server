@@ -1,6 +1,6 @@
 'use strict';
 
-var dbConf = require('../config/db');
+var dbConf = require('../config/keys/db');
 var mailConf = require('../config/keys/mail');
 
 module.exports = {
