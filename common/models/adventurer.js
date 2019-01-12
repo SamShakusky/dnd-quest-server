@@ -4,7 +4,7 @@ const send = require('../lib/mailer');
 const emailAlphaStart = require('../emails/alpha-start');
 
 const sendTokens = (adventurer, tempToken) => {
-  const link = `http://localhost:3001/password?access_token=${tempToken.id}`;
+  const link = `https://adventurecompanion.app/password?access_token=${tempToken.id}`;
   
   const data = {
     to: adventurer.email,
@@ -19,7 +19,7 @@ module.exports = function(Adventurer) {
   Adventurer.setTempTokens = function(cb) {
     Adventurer.find().then(adventurers => {
       const results = adventurers.map(adventurer => {
-        const ttl = 2 * 24 * 60 * 60; // 172800 seconds == 2 days
+        const ttl = 3 * 24 * 60 * 60; // 259200 seconds == 3 days
         
         return adventurer.createAccessToken(ttl).then((tempToken) => {
           sendTokens(adventurer, tempToken);
