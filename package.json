@@ -1,6 +1,6 @@
 {
   "name": "dnd-quest",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "back-end for dnd-quest",
   "main": "server/server.js",
   "engines": {
